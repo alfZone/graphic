@@ -16,23 +16,22 @@
 
 
 1 - Introduction
-tabledb
-Generic class that allows managing a database table. Creates a page to perform basic operations with a table.
 
-The idea for this object is to provide a simple way to manage a databes table. With some configurations we can list a tables, add a new record, change and update a record, delete a record and insert several records using a csv file.
+GraphicGoogle is a php class based on javascript google graphics to creat graphics.
 
-This class handles all file operations. It presents several methods for manipulating the file system. The methods are in Portuguese. Documentation can be found at https://github.com/alfZone/tabledb/tree/main/documentation and https://github.com/alfZone/tabledb/wiki
+The idea is to read a json web service and produce a graphic.
+
+Documentation can be found at https://github.com/alfZone/tabledb/tree/main/documentation and https://github.com/alfZone/tabledb/wiki
 
 2 - What's new
-  Version 8.5 - solved a problem with key no numerics
+  Version 1.0 
 3 - Corrected bugs
 4 - Known bugs or limitations
-Problens on the order os colunms on the list table whe the key is not the first field on database table
 
 5 - License
 Is released under GNU/LGPL license. This library is free, so you can use it at no cost.
 
-I will also appreciate that you send me a mail (alf@esmonserrate.org), just to be aware that someone is using #tabledb.
+I will also appreciate that you send me a mail (alf@esmonserrate.org), just to be aware that someone is using #GraphicGoogle.
 
 For more information about GNU/LGPL license : http://www.gnu.org
 
@@ -46,4 +45,4 @@ Documentation can be found at https://github.com/alfZone/tabledb/tree/main/docum
 This software was written by António Lira Fernandes (alf@esmonserrate.org) on its leasure time.
 
 9 - Contribute
-If you want to contribute to the development of FILE, please contact alf@esmonserrate.org.
+If you want to contribute to the development of class, please contact alf@esmonserrate.org.
