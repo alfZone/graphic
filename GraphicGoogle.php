@@ -4,7 +4,7 @@ namespace classes\graphic;
 /**
  * @author alf
  * @copyright 2020
- * @version 1.0
+ * @version 1.2
  * @updated 2020/04/01 
  *
  */
@@ -19,7 +19,8 @@ namespace classes\graphic;
    + setOptions($options) - reads chart options in accordance with google charts. $option is a string with options like this
                             example "{ title: 'My activities', is3D: true,}"
    + includes() - is a mandatory inclusion for google graphics javascript
-   + piechart() - draws a pie chart with the given data and as per the given options
+   + piechart($id) - draws a pie chart with the given data and as per the given options. $id is the HTML id
+   + piechart($id) - draws a bar chart with the given data and as per the given options. $id is the HTML id
  */
 
 
@@ -34,18 +35,26 @@ class GraphicGoogle{
     public function __construct(){  
     }
 
-    public function getDataJson($url,$key,$value){
+    public function getDataJson($url,$key,$valueList){
       //providing a url to a json webservice, a value for the tag ($key) and a $value for the values, the data will be available to be used in a chart
 
+      $vl=explode(",", $valueList);
       // Takes raw data from the request
       $json = file_get_contents($url);
       // Converts it into a PHP object
       $gData = json_decode($json,true);
-      
+      $valueList=str_replace(",", "','", $valueList);
       //print_r($gData);
-      $this->gData="[['" . $key . "','" . $value . "'],";
+      $this->gData="[['" . $key . "','" . $valueList . "'],";
       foreach($gData as $element){
-        $this->gData.="['" . $element[$key] . "'," . $element[$value] . "]";
+        $values="";
+        $sep="";
+        foreach($vl as $serie){
+          $values.=$sep. $element[$serie];
+          $sep=",";
+        }  
+        
+        $this->gData.="['" . $element[$key] . "'," . $values . "]";
       }
       $this->gData=str_replace("][", "],[", $this->gData);
       $this->gData.="]";
@@ -65,7 +74,30 @@ class GraphicGoogle{
       return ' <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>';
     }
  
-    public function piechart(){
+  
+  public function barchart($id){
+      //draws a pie chart with the given data and as per the given options
+      ?>
+        <script type="text/javascript">
+          google.charts.load('current', {'packages':['bar']});
+          google.charts.setOnLoadCallback(drawChart);
+
+          function drawChart() {
+
+            var data = google.visualization.arrayToDataTable(<?=$this->gData?>);
+
+            var options = <?=$this->options?>;
+            
+            var chart = new google.charts.Bar(document.getElementById('<?=$id?>'));
+
+            chart.draw(data, google.charts.Bar.convertOptions(options));
+          }
+        </script>
+      <?php
+    }
+  
+  
+    public function piechart($id){
       //draws a pie chart with the given data and as per the given options
       ?>
         <script type="text/javascript">
@@ -78,7 +110,7 @@ class GraphicGoogle{
 
             var options = <?=$this->options?>;
 
-            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            var chart = new google.visualization.PieChart(document.getElementById('<?=$id?>'));
 
             chart.draw(data, options);
           }
