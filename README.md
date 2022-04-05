@@ -21,7 +21,7 @@ GraphicGoogle is a php class based on javascript google graphics to creat graphi
 
 The idea is to read a json web service and produce a graphic.
 
-Documentation can be found at https://github.com/alfZone/tabledb/tree/main/documentation and https://github.com/alfZone/tabledb/wiki
+Documentation can be found at https://github.com/alfZone/graphics/wiki
 
 2 - What's new
   Version 1.0 
@@ -39,7 +39,7 @@ For more information about GNU/LGPL license : http://www.gnu.org
 This library and the associated files are non commercial, non professional work. It should not have unexpected results. However if any damage is caused by this software the author can not be responsible. The use of this software is at the risk of the user.
 
 7 - Documentation
-Documentation can be found at https://github.com/alfZone/tabledb/tree/main/documentation and https://github.com/alfZone/tabledb/wiki
+Documentation can be found at https://github.com/alfZone/graphics/wiki
 
 8 - Author
 This software was written by António Lira Fernandes (alf@esmonserrate.org) on its leasure time.
