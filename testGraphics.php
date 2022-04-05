@@ -66,7 +66,8 @@ $grp->setOptions($opt);
 //send the data using json web service
 $gr->getDataJson("https://esmonserrate.org/public//stats/criadores","name","num");
 $grb->getDataJson("https://esmonserrate.org/public//stats/criadores/2ultimos","name","Dois Anos antes,Ultimo Ano,Ano Atual");
-$gra->getDataJson("https://esmonserrate.org/public/stats/artigos/meses","dataMes","num");
+$gra->getDataJson("https://esmonserrate.org/public//stats/artigos/meses/seccao","dataMes","num","title");
+//$gra->getDataJson("https://esmonserrate.org/public/stats/artigos/meses","dataMes","num");
 $grc->getDataJson("https://esmonserrate.org/public//stats/criadores/2ultimos","name","Três Anos antes,Dois Anos antes,Ultimo Ano,Ano Atual");
 $grcb->getDataJson("https://esmonserrate.org/public//stats/criadores/2ultimos","name","Três Anos antes,Dois Anos antes,Ultimo Ano,Ano Atual");
 $grg->getDataJson("https://esmonserrate.org/public//stats/artigos/local","pp","num");
@@ -83,7 +84,7 @@ $grp->getDataJson("https://esmonserrate.org/public//stats/mapa","Country","Popul
     <?php echo $grp->geochart('GeoChart'); ?> 
     <div id="GeoChart" style="width: 900px; height: 500px;"></div>
     <?php echo $grg->gauge('gauge'); ?> 
-    <div id="gauge" style="width: 900px; height: 500px;"></div>
+    <div id="gauge" style="width: 100%; height: 130px"></div>
     <?php echo $grcb->comboChart('ComboChart'); ?> 
     <div id="ComboChart" style="width: 900px; height: 500px;"></div>
     <?php echo $grc->candlestickChar('candlestickChar'); ?> 
