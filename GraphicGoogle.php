@@ -1,12 +1,11 @@
 <?php 
-<?php 
 namespace classes\graphic;
 
 /**
  * @author alf
  * @copyright 2020
- * @version 1.3
- * @updated 2020/04/03 
+ * @version 2.4
+ * @updated 2020/04/05 
  *
  */
 
@@ -15,14 +14,20 @@ namespace classes\graphic;
     ---*/
 /*Methods:
     __construct() - is the class constroctor
-   + getDataJson($url,$key,$valueLista) - providing a url to a json webservice, a value for the tag ($key) and a $valueList for the list of values, the data 
-                                     will be available to be used in a chart
+   + getDataJson($url,$key,$valueLista) - providing a url for a json webservice, a value for the tag ($key) and a $valueList for the list of values, the data will 
+                                          be available to be used in a graph. The $col option is used to create a pivot table in which the values of the $col field 
+                                          will be displayed in the columns
    + setOptions($options) - reads chart options in accordance with google charts. $option is a string with options like this
                             example "{ title: 'My activities', is3D: true,}"
    + includes() - is a mandatory inclusion for google graphics javascript
-   + piechart($id) - draws a pie chart with the given data and as per the given options. $id is the HTML id
    + barchart($id) - draws a bar chart with the given data and as per the given options. $id is the HTML id
-   + corechart($id) - draws a bar chart with the given data and as per the given options. $id is the HTML id
+   + candlestickChar($id) - draws a candlestick chart with the given data and according to the given options. $id is the HTML code
+   + comboChart($id) - Draws a combo tchart with the given data and according to the given options. $id is the HTML code
+   + corechart($id) - draws a area chart with the given data and according to the given options. $id is the HTML code
+   + gauge($id) - draws a graph with pressure gauges with the given data and according to the given options. $id is the HTML code
+   + piechart($id) - draws a pie chart with the given data and as per the given options. $id is the HTML id
+   
+  
  */
 /*
 *Github
@@ -45,15 +50,48 @@ class GraphicGoogle{
     public function __construct(){  
     }
 
-    public function getDataJson($url,$key,$valueList){
+    public function getDataJson($url,$key,$valueList, $col=""){
       //providing a url to a json webservice, a value for the tag ($key) and a $value for the values, the data will be available to be used in a chart
 
-      $vl=explode(",", $valueList);
       // Takes raw data from the request
       $json = file_get_contents($url);
       // Converts it into a PHP object
       $gData = json_decode($json,true);
+      if ($col!=""){
+        $ls="";
+        $sep="";
+        foreach($gData as $element){
+          $list[$element[$col]]=$element[$col];
+        }
+        foreach($list as $k){
+            //echo "$k";
+            $ls.=$sep.$k;
+            $sep=",";
+          }
+        
+        //print_r($list);
+        //echo "<br>-------------------<br>";
+        foreach($gData as $element){
+          foreach($list as $l){
+            $aux[$element[$key]][$l]=0;
+          }         
+        }
+        foreach($gData as $element){
+          $aux[$element[$key]][$key]=$element[$key];
+          $aux[$element[$key]][$element[$col]]=$aux[$element[$key]][$element[$col]]+$element[$valueList];
+        }
+        //print_r($aux);
+        $gData=$aux;
+        $valueList=$ls;
+        $vl=$list;
+      } else{
+        $vl=explode(",", $valueList);
+      }
+      
+      //echo "<br>vl=";
+      //print_r($vl);
       $valueList=str_replace(",", "','", $valueList);
+      //echo "<br>lista :$valueList<br><br>";
       //print_r($gData);
       $this->gData="[['" . $key . "','" . $valueList . "'],";
       foreach($gData as $element){
@@ -107,7 +145,7 @@ class GraphicGoogle{
   
   
   public function gauge($id){
-      //draws a gauge with the given data and as per the given options
+      //draws a graph with pressure gauges with the given data and according to the given options. $id is the HTML code
       ?>
         <script type="text/javascript">
           google.charts.load('current', {'packages':['gauge']});
@@ -141,7 +179,7 @@ class GraphicGoogle{
     }
   
   public function comboChart($id){
-      //draws a pie chart with the given data and as per the given options
+      //Draws a combo tchart with the given data and according to the given options. $id is the HTML code
       ?>
         <script type="text/javascript">
           google.charts.load('current', {'packages':['corechart']});
@@ -183,7 +221,7 @@ class GraphicGoogle{
     }
   
    public function corechart($id){
-      //draws a pie chart with the given data and as per the given options
+      //draws a area chart with the given data and according to the given options. $id is the HTML code
       ?>
         <script type="text/javascript">
           google.charts.load('current', {'packages':['corechart']});
