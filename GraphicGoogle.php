@@ -4,7 +4,7 @@ namespace classes\graphic;
 /**
  * @author alf
  * @copyright 2020
- * @version 2.4
+ * @version 2.5
  * @updated 2020/04/05 
  *
  */
@@ -87,7 +87,7 @@ class GraphicGoogle{
       } else{
         $vl=explode(",", $valueList);
       }
-      
+      $valueList=str_replace("'", "", $valueList);
       //echo "<br>vl=";
       //print_r($vl);
       $valueList=str_replace(",", "','", $valueList);
@@ -102,7 +102,7 @@ class GraphicGoogle{
           $sep=",";
         }  
         
-        $this->gData.="['" . $element[$key] . "'," . $values . "]";
+        $this->gData.="['" . str_replace("'", "",$element[$key]) . "'," . str_replace("'", "",$values) . "]";
       }
       $this->gData=str_replace("][", "],[", $this->gData);
       $this->gData.="]";
