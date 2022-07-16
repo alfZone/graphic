@@ -4,7 +4,7 @@ namespace classes\graphic;
 /**
  * @author alf
  * @copyright 2020
- * @version 2.5
+ * @version 2.6
  * @updated 2020/04/05 
  *
  */
@@ -92,17 +92,22 @@ class GraphicGoogle{
       //print_r($vl);
       $valueList=str_replace(",", "','", $valueList);
       //echo "<br>lista :$valueList<br><br>";
-      //print_r($gData);
+      //print_r($this->$gData);
       $this->gData="[['" . $key . "','" . $valueList . "'],";
       foreach($gData as $element){
         $values="";
         $sep="";
         foreach($vl as $serie){
-          $values.=$sep. $element[$serie];
-          $sep=",";
+          if(isset($element[$serie])){
+            $values.=$sep. $element[$serie];
+            $sep=",";
+          }
+          
         }  
+        if (isset($element[$key])){
+          $this->gData.="['" . str_replace("'", "",$element[$key]) . "'," . str_replace("'", "",$values) . "]";
+        }
         
-        $this->gData.="['" . str_replace("'", "",$element[$key]) . "'," . str_replace("'", "",$values) . "]";
       }
       $this->gData=str_replace("][", "],[", $this->gData);
       $this->gData.="]";
