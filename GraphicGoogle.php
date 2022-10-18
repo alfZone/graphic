@@ -4,8 +4,8 @@ namespace classes\graphic;
 /**
  * @author alf
  * @copyright 2020
- * @version 2.6
- * @updated 2020/04/05 
+ * @version 2.7
+ * @updated 2022/04/05 
  *
  */
 
@@ -55,8 +55,12 @@ class GraphicGoogle{
 
       // Takes raw data from the request
       $json = file_get_contents($url);
+      //echo $json ;
+      $json=str_replace('\n',"",$json);
+      //echo $json ;
       // Converts it into a PHP object
       $gData = json_decode($json,true);
+      //print_r($gData);
       if ($col!=""){
         $ls="";
         $sep="";
