@@ -3,8 +3,8 @@ namespace classes\graphic;
 
 /**
  * @author alf
- * @copyright 2020
- * @version 2.7
+ * @copyright 2023
+ * @version 2.8
  * @updated 2022/04/05 
  *
  */
@@ -50,11 +50,14 @@ class GraphicGoogle{
     public function __construct(){  
     }
 
+
     public function getDataJson($url,$key,$valueList, $col=""){
       //providing a url to a json webservice, a value for the tag ($key) and a $value for the values, the data will be available to be used in a chart
 
       // Takes raw data from the request
       $json = file_get_contents($url);
+      //echo $url;
+      //print_r($_COOKIE);
       //echo $json ;
       $json=str_replace('\n',"",$json);
       //echo $json ;
@@ -131,10 +134,14 @@ class GraphicGoogle{
       return ' <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>';
     }
  
-  public function geochart($id){
+  public function geochart($id,$script=1){
       //draws a pie chart with the given data and as per the given options
-      ?>
+      if ($script==1){
+        ?>
         <script type="text/javascript">
+        <?php
+      }
+      ?>
           google.charts.load('current', {'packages':['geochart']});
           google.charts.setOnLoadCallback(drawRegionsMap);
 
@@ -148,15 +155,23 @@ class GraphicGoogle{
 
             chart.draw(data, options);
           }
-        </script>
-      <?php
+          <?php
+        if ($script==1){
+          ?>
+          </script>
+          <?php
+        }
     }
   
   
-  public function gauge($id){
+  public function gauge($id,$script=1){
       //draws a graph with pressure gauges with the given data and according to the given options. $id is the HTML code
-      ?>
+      if ($script==1){
+        ?>
         <script type="text/javascript">
+        <?php
+      }
+      ?>
           google.charts.load('current', {'packages':['gauge']});
           google.charts.setOnLoadCallback(drawChart);
 
@@ -183,14 +198,22 @@ class GraphicGoogle{
               chart.draw(data, options);
             }, 26000);
           }
-        </script>
-      <?php
+          <?php
+        if ($script==1){
+          ?>
+          </script>
+          <?php
+        }
     }
   
-  public function comboChart($id){
+  public function comboChart($id,$script=1){
       //Draws a combo tchart with the given data and according to the given options. $id is the HTML code
-      ?>
+      if ($script==1){
+        ?>
         <script type="text/javascript">
+        <?php
+      }
+      ?>
           google.charts.load('current', {'packages':['corechart']});
           google.charts.setOnLoadCallback(drawVisualization);
 
@@ -204,14 +227,22 @@ class GraphicGoogle{
 
             chart.draw(data, options);
           }
-        </script>
-      <?php
+          <?php
+        if ($script==1){
+          ?>
+          </script>
+          <?php
+        }
     }
   
-  public function candlestickChar($id){
+  public function candlestickChar($id,$script=1){
       //draws a pie chart with the given data and as per the given options
-      ?>
+      if ($script==1){
+        ?>
         <script type="text/javascript">
+        <?php
+      }
+      ?>
           google.charts.load('current', {'packages':['corechart']});
           google.charts.setOnLoadCallback(drawChart);
 
@@ -225,14 +256,22 @@ class GraphicGoogle{
 
             chart.draw(data, options);
           }
-        </script>
-      <?php
+          <?php
+        if ($script==1){
+          ?>
+          </script>
+          <?php
+        }
     }
   
-   public function corechart($id){
+   public function corechart($id,$script=1){
       //draws a area chart with the given data and according to the given options. $id is the HTML code
-      ?>
+      if ($script==1){
+        ?>
         <script type="text/javascript">
+        <?php
+      }
+      ?>
           google.charts.load('current', {'packages':['corechart']});
           google.charts.setOnLoadCallback(drawChart);
 
@@ -246,14 +285,23 @@ class GraphicGoogle{
 
             chart.draw(data, options);
           }
-        </script>
-      <?php
+          <?php
+        if ($script==1){
+          ?>
+          </script>
+          <?php
+        }
     }
   
-  public function barchart($id){
+  public function barchart($id,$script=1){
       //draws a pie chart with the given data and as per the given options
-      ?>
+      if ($script==1){
+        ?>
         <script type="text/javascript">
+        <?php
+      }
+      ?>
+        
           google.charts.load('current', {'packages':['bar']});
           google.charts.setOnLoadCallback(drawChart);
 
@@ -267,15 +315,23 @@ class GraphicGoogle{
 
             chart.draw(data, google.charts.Bar.convertOptions(options));
           }
-        </script>
-      <?php
+        <?php
+        if ($script==1){
+          ?>
+          </script>
+          <?php
+        }
     }
   
   
-    public function piechart($id){
+    public function piechart($id,$script=1){
       //draws a pie chart with the given data and as per the given options
-      ?>
+      if ($script==1){
+        ?>
         <script type="text/javascript">
+        <?php
+      }
+      ?>
           google.charts.load('current', {'packages':['corechart']});
           google.charts.setOnLoadCallback(drawChart);
 
@@ -289,8 +345,12 @@ class GraphicGoogle{
 
             chart.draw(data, options);
           }
-        </script>
-      <?php
+          <?php
+        if ($script==1){
+          ?>
+          </script>
+          <?php
+        }
     }
 }
 
