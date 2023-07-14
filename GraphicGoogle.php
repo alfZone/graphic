@@ -20,12 +20,12 @@ namespace classes\graphic;
    + setOptions($options) - reads chart options in accordance with google charts. $option is a string with options like this
                             example "{ title: 'My activities', is3D: true,}"
    + includes() - is a mandatory inclusion for google graphics javascript
-   + barchart($id) - draws a bar chart with the given data and as per the given options. $id is the HTML id
-   + candlestickChar($id) - draws a candlestick chart with the given data and according to the given options. $id is the HTML code
-   + comboChart($id) - Draws a combo tchart with the given data and according to the given options. $id is the HTML code
-   + corechart($id) - draws a area chart with the given data and according to the given options. $id is the HTML code
-   + gauge($id) - draws a graph with pressure gauges with the given data and according to the given options. $id is the HTML code
-   + piechart($id) - draws a pie chart with the given data and as per the given options. $id is the HTML id
+   + barchart($id,$script=1) - draws a bar chart with the given data and as per the given options. $id is the HTML id and $script is 1 for enclosing de result in <script> tag and 0 for no enclosing
+   + candlestickChar($id,$script=1) - draws a candlestick chart with the given data and according to the given options. $id is the HTML code and $script is 1 for enclosing de result in <script> tag and 0 for no enclosing
+   + comboChart($id,$script=1) - Draws a combo tchart with the given data and according to the given options. $id is the HTML code and $script is 1 for enclosing de result in <script> tag and 0 for no enclosing
+   + corechart($id,$script=1) - draws a area chart with the given data and according to the given options. $id is the HTML code and $script is 1 for enclosing de result in <script> tag and 0 for no enclosing
+   + gauge($id,$script=1) - draws a graph with pressure gauges with the given data and according to the given options. $id is the HTML code and $script is 1 for enclosing de result in <script> tag and 0 for no enclosing
+   + piechart($id,$script=1) - draws a pie chart with the given data and as per the given options. $id is the HTML id and $script is 1 for enclosing de result in <script> tag and 0 for no enclosing
    
   
  */
@@ -33,7 +33,6 @@ namespace classes\graphic;
 *Github
 * https://github.com/alfZone/graphics
 */
-
 
 // https://developers.google.com/chart/interactive/docs/gallery
 
