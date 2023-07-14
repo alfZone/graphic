@@ -24,7 +24,7 @@ The idea is to read a json web service and produce a graphic.
 Documentation can be found at https://github.com/alfZone/graphics/wiki
 
 2 - What's new
-  Version 1.0 
+  Version 2.8 
 3 - Corrected bugs
 4 - Known bugs or limitations
 
